@@ -7,7 +7,8 @@ export default function App() {
       {
         userId: 1,
         id: 1,
-        title: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+        title:
+          "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
         body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
         image: "https://picsum.photos/500",
       },
@@ -39,13 +40,20 @@ export default function App() {
         body: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
         image: "https://picsum.photos/500",
       },
+      {
+        userId: 1,
+        id: 6,
+        title: "nesciunt quas odio",
+        body: "repudiandae veniam quaerat sunt sed\nalias aut fugiat sit autem sed est\nvoluptatem omnis possimus esse voluptatibus quis\nest aut tenetur dolor neque",
+        image: "https://picsum.photos/500",
+      },
     ],
   };
 
   // useState untuk counter
   const [count, setCount] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false); //untuk hamburger
 
-  // useEffect untuk alert ketika count habis dibagi 10
   useEffect(() => {
     if (count !== 0 && count % 10 === 0) {
       alert(`${count} is divisible by 10`);
@@ -55,15 +63,50 @@ export default function App() {
   return (
     <div className="App">
       {/* Navigation Bar */}
-      <nav className="flex flex-col md:flex-row justify-between items-center p-4 bg-black text-white">
-        <div className="text-lg font-bold mb-2 md:mb-0">
-          Raka Arrayan
-        </div>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 text-center">
-          <a href="#home" className="hover:underline">Home</a>
-          <a href="#profile" className="hover:underline">Profile</a>
-          <a href="#contact" className="hover:underline">Contact</a>
-          <a href="#about" className="hover:underline">About me</a>
+      <nav className="bg-black text-white p-4">
+        <div className="flex justify-between items-center">
+          <div className="text-lg font-bold">Raka Arrayan</div>
+
+          {/* Hamburger Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="focus:outline-none"
+            >
+              {/* Icon Hamburger */}
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {menuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Menu Links */}
+          <div className={`flex-col md:flex md:flex-row md:items-center md:space-x-4 ${menuOpen ? 'flex' : 'hidden'}`}>
+            <a href="#home" className="block py-2 md:py-0 hover:underline">Home</a>
+            <a href="#profile" className="block py-2 md:py-0 hover:underline">Profile</a>
+            <a href="#contact" className="block py-2 md:py-0 hover:underline">Contact</a>
+            <a href="#about" className="block py-2 md:py-0 hover:underline">About me</a>
+          </div>
         </div>
       </nav>
 
@@ -97,10 +140,17 @@ export default function App() {
       <div className="p-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {response.results.map((item) => (
-            <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-              <img src={item.image} alt={item.title} className="w-full h-48 object-cover" />
+            <div
+              key={item.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-48 object-cover"
+              />
               <div className="p-4">
-                <h2 className="text-xl font-semibold mb-2">{item.title}</h2>
+              <h2 className="text-xl font-semibold mb-2 hover:underline">{item.title}</h2>
                 <p className="text-gray-600 text-sm">{item.body}</p>
               </div>
             </div>
