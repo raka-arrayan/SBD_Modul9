@@ -2,6 +2,9 @@ import React from "react";
 import sepatu from "./assets/sepatu.jpg";
 import jeans from "./assets/jeans.webp";
 import baju from "./assets/baju.jpg";
+import jam from "./assets/watch.jpg";
+import batik from "./assets/batik.jpg";
+import tas from "./assets/ransel.webp";
 
 export default function ECommercePage() {
   const items = [
@@ -26,6 +29,27 @@ export default function ECommercePage() {
       stock: 30,
       image: sepatu,
     },
+    {
+      id: "item-4",
+      name: "Jam Tangan",
+      price: 175000,
+      stock: 20,
+      image: jam,
+    },
+    {
+      id: "item-5",
+      name: "Kemeja Batik",
+      price: 95000,
+      stock: 25,
+      image: batik,
+    },
+    {
+      id: "item-6",
+      name: "Tas Ransel",
+      price: 150000,
+      stock: 40,
+      image: tas,
+    },
   ];
 
   const stores = [
@@ -34,7 +58,7 @@ export default function ECommercePage() {
   ];
 
   return (
-    <div className="p-6 max-w-screen-lg mx-auto font-sans">
+    <div className="p-6 max-w-screen-xl mx-auto font-sans">
       <h1 className="text-4xl font-bold mb-10 text-center text-blue-700">🛍️ Raka Shop</h1>
 
       <h2 className="text-2xl font-semibold mb-6">🧾 Daftar Produk</h2>

@@ -15,7 +15,7 @@ export default function LoginRegister() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://backend-raka.vercel.app/user/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
+        `http://localhost:3000/user/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
         {
           method: "POST",
         }
@@ -36,7 +36,7 @@ export default function LoginRegister() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `https://backend-raka.vercel.app/user/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+        `http://localhost:3000/user/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         {
           method: "POST",
         }
