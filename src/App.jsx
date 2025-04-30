@@ -4,6 +4,9 @@
   import ECommercePage from "./ECommercePage";
   import Footer from "./Footer";
   import LoginRegister from "./LoginRegister";
+  import Profile from "./Profile";
+  import Faq from "./Faq";
+  import About from "./About";
 
   function Home() {
     return (
@@ -22,6 +25,9 @@
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginRegister />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/Faq" element={<Faq />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </Router>
     );

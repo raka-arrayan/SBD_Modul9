@@ -7,13 +7,13 @@ export default function Navbar() {
   return (
     <nav className="bg-gray-800 text-white p-4">
       <div className="flex justify-between items-center">
-        <div className="text-lg font-bold">Raka Arrayan</div>
+        <div className="text-lg font-bold">RakaShop</div>
 
         <div className="hidden md:flex items-center space-x-4">
           <Link to="/" className="hover:underline">Home</Link>
           <Link to="/profile" className="hover:underline">Profile</Link>
-          <Link to="/contact" className="hover:underline">Contact</Link>
-          <Link to="/about" className="hover:underline">About me</Link>
+          <Link to="/Faq" className="hover:underline">FAQ</Link>
+          <Link to="/about" className="hover:underline">About</Link>
           <Link
             to="/login"
             className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
@@ -31,7 +31,7 @@ export default function Navbar() {
 
       <div className={`md:hidden flex flex-col space-y-2 mt-4 ${menuOpen ? 'block' : 'hidden'}`}>
         <Link to="/" className="hover:underline">Home</Link>
-        <Link to="/profile" className="hover:underline">Profile</Link>
+        <Link to="/Profile" className="hover:underline">Profile</Link>
         <Link to="/contact" className="hover:underline">Contact</Link>
         <Link to="/about" className="hover:underline">About me</Link>
         <Link
