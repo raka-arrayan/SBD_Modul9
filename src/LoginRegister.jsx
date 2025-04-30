@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 export default function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,7 +15,7 @@ export default function LoginRegister() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/user/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
+        `https://backend-raka.vercel.app/user/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
         {
           method: "POST",
         }
