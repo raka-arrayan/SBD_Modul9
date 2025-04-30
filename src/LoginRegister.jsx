@@ -36,7 +36,7 @@ export default function LoginRegister() {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/user/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+        `https://backend-raka.vercel.app/user/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         {
           method: "POST",
         }

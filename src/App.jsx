@@ -1,15 +1,15 @@
   import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
   import Navbar from "./Navbar";
-  import Counter from "./Counter";
-  import CardList from "./Cardlist";
+  import Welcome from "./Welcome";
+  import ECommercePage from "./ECommercePage";
   import Footer from "./Footer";
   import LoginRegister from "./LoginRegister";
 
   function Home() {
     return (
       <>
-        <Counter />
-        <CardList />
+        <Welcome />
+        <ECommercePage />
         <Footer />
       </>
     );
