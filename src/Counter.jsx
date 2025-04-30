@@ -10,7 +10,7 @@ export default function Counter() {
   }, [count]);
 
   return (
-    <div className="flex flex-col items-center my-10">
+    <div  className="flex flex-col items-center my-10">
       <h1 className="text-3xl font-bold mb-4">Counter Demo</h1>
       <div className="text-5xl mb-6">{count}</div>
       <div className="flex space-x-4">
