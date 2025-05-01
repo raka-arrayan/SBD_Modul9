@@ -15,7 +15,6 @@ export default function Store() {
 
   return (
     <div className="bg-gray-50 p-8 rounded-lg shadow-md">
-      <h1 className="text-4xl font-bold mb-6 text-center text-blue-700">🛍️ Raka Shop</h1>
       <h2 className="text-2xl font-semibold mb-6 text-center text-blue-600">🏬 Store Management</h2>
 
       <div className="flex flex-col sm:flex-row gap-6 mb-8">

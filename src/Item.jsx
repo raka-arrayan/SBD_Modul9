@@ -1,4 +1,6 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import sepatu from "./assets/sepatu.jpg";
 import jeans from "./assets/jeans.webp";
 import baju from "./assets/baju.jpg";
@@ -9,6 +11,8 @@ import topi from "./assets/topi.webp";
 import sarung from "./assets/sarung.jpg";
 
 export default function Item() {
+  const navigate = useNavigate();
+
   const items = [
     {
       id: "item-1",
@@ -61,7 +65,7 @@ export default function Item() {
     },
     {
       id: "item-8",
-      name: "Tas Ransel",
+      name: "Sarung",
       price: 150000,
       stock: 40,
       image: sarung,
@@ -92,7 +96,10 @@ export default function Item() {
             </p>
             <p className="text-gray-600 text-sm">Stok: {item.stock}</p>
             <div className="mt-4">
-              <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">
+              <button
+                onClick={() => navigate("/cart", { state: item })}
+                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out"
+              >
                 Add to Cart
               </button>
             </div>
