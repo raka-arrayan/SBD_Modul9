@@ -1,18 +1,22 @@
   import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
   import Navbar from "./Navbar";
   import Welcome from "./Welcome";
-  import ECommercePage from "./ECommercePage";
   import Footer from "./Footer";
   import LoginRegister from "./LoginRegister";
   import Profile from "./Profile";
   import Faq from "./Faq";
   import About from "./About";
+  import Store from "./Store";
+  import Item from "./Item";
+  import Transaction from "./Transaction";
 
   function Home() {
     return (
       <>
         <Welcome />
-        <ECommercePage />
+        <Store />
+        <Item />
+        <Transaction />
         <Footer />
       </>
     );
