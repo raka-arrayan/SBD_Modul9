@@ -5,17 +5,18 @@ export default function LoginRegister() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState(""); // For registration
+  const [name, setName] = useState(""); // Only for registration
   const [error, setError] = useState("");
-  
-  const navigate = useNavigate(); // Initialize useNavigate
 
-  // Function to handle registration
+  const navigate = useNavigate();
+  const BASE_URL = "https://backend-raka.vercel.app";
+
+  // Handle registration
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/user/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
+        `${BASE_URL}/user/register?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&name=${encodeURIComponent(name)}`,
         {
           method: "POST",
         }
@@ -23,20 +24,21 @@ export default function LoginRegister() {
       const data = await response.json();
       if (data.success) {
         alert("User registered successfully!");
+        setIsLogin(true); // Switch to login tab after successful registration
       } else {
-        setError(data.message);
+        setError(data.message || "Registration failed.");
       }
     } catch (error) {
       setError("An error occurred while registering.");
     }
   };
 
-  // Function to handle login and navigate to home page on success
+  // Handle login
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:3000/user/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
+        `${BASE_URL}/user/login?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`,
         {
           method: "POST",
         }
@@ -44,9 +46,11 @@ export default function LoginRegister() {
       const data = await response.json();
       if (data.success) {
         alert("Login successful!");
-        navigate("/"); // Navigate to home
+        // Optionally store token or user info
+        localStorage.setItem("user", JSON.stringify(data.user || {}));
+        navigate("/"); // Redirect to home
       } else {
-        setError(data.message);
+        setError(data.message || "Login failed.");
       }
     } catch (error) {
       setError("An error occurred while logging in.");
@@ -62,7 +66,10 @@ export default function LoginRegister() {
             className={`w-1/2 py-2 font-semibold rounded-full transition ${
               isLogin ? "bg-blue-500 text-white" : "bg-gray-200 text-gray-700"
             }`}
-            onClick={() => setIsLogin(true)}
+            onClick={() => {
+              setIsLogin(true);
+              setError("");
+            }}
           >
             Login
           </button>
@@ -70,7 +77,10 @@ export default function LoginRegister() {
             className={`w-1/2 py-2 font-semibold rounded-full transition ${
               !isLogin ? "bg-green-500 text-white" : "bg-gray-200 text-gray-700"
             }`}
-            onClick={() => setIsLogin(false)}
+            onClick={() => {
+              setIsLogin(false);
+              setError("");
+            }}
           >
             Register
           </button>
@@ -85,6 +95,7 @@ export default function LoginRegister() {
               className="border border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <input
               type="password"
@@ -92,6 +103,7 @@ export default function LoginRegister() {
               className="border border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <button
               type="submit"
@@ -99,7 +111,7 @@ export default function LoginRegister() {
             >
               Login
             </button>
-            {error && <div className="text-red-500 text-sm">{error}</div>}
+            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
           </form>
         ) : (
           <form className="flex flex-col space-y-4" onSubmit={handleRegister}>
@@ -109,6 +121,7 @@ export default function LoginRegister() {
               className="border border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
             <input
               type="email"
@@ -116,6 +129,7 @@ export default function LoginRegister() {
               className="border border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <input
               type="password"
@@ -123,6 +137,7 @@ export default function LoginRegister() {
               className="border border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-green-300"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
             <button
               type="submit"
@@ -130,7 +145,7 @@ export default function LoginRegister() {
             >
               Register
             </button>
-            {error && <div className="text-red-500 text-sm">{error}</div>}
+            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
           </form>
         )}
       </div>
